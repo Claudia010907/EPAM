@@ -1,25 +1,25 @@
-import cmath
+import math
 
+def solution(a: int, b: int, c: int):
+    # Calculate the discriminant
+    discriminant = b * b - 4 * a * c
+    
+    # No real roots
+    if discriminant < 0:
+        return None
+    
+    # One real root
+    elif discriminant == 0:
+        root = -b / (2 * a)
+        return (root,)
+    
+    # Two real roots
+    else:
+        root1 = (-b - math.sqrt(discriminant)) / (2 * a)
+        root2 = (-b + math.sqrt(discriminant)) / (2 * a)
+        return tuple(sorted((root1, root2)))
 
-def solve_quadratic(a, b, c):
-
-    discriminant = b**2 - 4*a*c
-
-
-    solution1 = (-b + cmath.sqrt(discriminant)) / (2 * a)
-    solution1 = (-b - cmath.sqrt(discriminant)) / (2 * a)
-
-    return solution1, solution2
-
-
-a = float(input("Enter coefficient a: "))
-b = float(input("Enter coefficient a: "))
-c = float(input("Enter coefficient a: "))
-
-
-if a == 0:
-  print("The value of 'a' cannot be zero for a quadratic equation.")
-else:
-
-  sol1, sol2 = solve_quadratic(a, b, c)
-  print(f"The solutions are: {sol1} and {sol2}")
+# Example usage
+print(solution(a=1, b=6, c=5))  # (-5, -1)
+print(solution(a=1, b=4, c=4))  # (-2,)
+print(solution(a=1, b=6, c=45)) # None
